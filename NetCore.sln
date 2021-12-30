@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeerData", "LeerData\LeerData.csproj", "{F2652ED0-79D1-4AF2-8271-52F53F4D1403}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F2652ED0-79D1-4AF2-8271-52F53F4D1403}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2652ED0-79D1-4AF2-8271-52F53F4D1403}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2652ED0-79D1-4AF2-8271-52F53F4D1403}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2652ED0-79D1-4AF2-8271-52F53F4D1403}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DF897F8F-8E69-4B7D-88C8-0A6A882E7D4B}
+	EndGlobalSection
+EndGlobal
