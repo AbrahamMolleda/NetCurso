@@ -10,6 +10,11 @@ namespace Persistencia
 {
     public class MySqlCursosOnlineContext : DbContext
     {
+        public MySqlCursosOnlineContext(DbContextOptions<MySqlCursosOnlineContext> options) : base(options)
+        {
+
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<CursoInstructor>().HasKey(ci => new { ci.CursoId, ci.InstructorId });

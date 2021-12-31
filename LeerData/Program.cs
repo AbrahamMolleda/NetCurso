@@ -1,5 +1,8 @@
-﻿using LeerData.Data;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Persistencia;
 using System;
 
 namespace LeerData
@@ -8,7 +11,29 @@ namespace LeerData
     {
         static void Main(string[] args)
         {
-            using (var db = new SqlAppVentasCursosContext())
+            // 1.- Leemos configuraciones
+            IConfigurationBuilder config = new ConfigurationBuilder()
+            .AddJsonFile("appsettings.json", true, true)
+              .AddEnvironmentVariables();
+            IConfigurationRoot configurationRoot = config.Build();
+
+            // 2) Inyectamos todos los servicios que queramos usar
+
+            ServiceProvider serviceProvider = new ServiceCollection()
+                .AddSingleton<IConfiguration>(configurationRoot)
+                .AddDbContext<SqlServerCursosOnlineContext>(opt =>
+                {
+                    opt.UseSqlServer(configurationRoot.GetSection("SqlConnections:SqlServer").Value);
+                })
+                .AddDbContext<MySqlCursosOnlineContext>(opt =>
+                {
+                    opt.UseMySql(configurationRoot.GetSection("SqlConnections:MySql").Value, new MySqlServerVersion(new Version(8, 5, 64)));
+                })
+                .BuildServiceProvider();
+
+            serviceProvider.GetService<ILoggerFactory>();
+
+            using (var db = serviceProvider.GetService<SqlServerCursosOnlineContext>())
             {
                 var cursos = db.Curso
                     .Include(p => p.Precio)
@@ -31,7 +56,7 @@ namespace LeerData
                 }
             }
 
-            using (var db = new MySqlAppVentasCursosContext())
+            using (var db = serviceProvider.GetService<MySqlCursosOnlineContext>())
             {
                 var cursos = db.Curso
                     .Include(p => p.Precio)

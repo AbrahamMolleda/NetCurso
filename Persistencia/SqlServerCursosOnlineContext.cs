@@ -5,7 +5,7 @@ namespace Persistencia
 {
     public class SqlServerCursosOnlineContext : DbContext
     {
-        public SqlServerCursosOnlineContext(DbContextOptions options) : base(options)
+        public SqlServerCursosOnlineContext(DbContextOptions<SqlServerCursosOnlineContext> options) : base(options)
         {
 
         }
