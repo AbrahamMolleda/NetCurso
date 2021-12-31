@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeerData.Entities
+namespace Dominio.Entities
 {
     public class Comentario
     {
@@ -14,6 +14,5 @@ namespace LeerData.Entities
         public string ComentarioTexto { get; set; }
         public int CursoId { get; set; }
         public Curso Curso { get; set; }
-
     }
 }

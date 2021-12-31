@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeerData.Entities
+namespace Dominio.Entities
 {
     public class Precio
     {

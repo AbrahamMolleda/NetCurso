@@ -1,20 +1,18 @@
 ﻿using Dominio.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace LeerData.Data
+namespace Persistencia
 {
-    public class SqlAppVentasCursosContext : DbContext
+    public class SqlServerCursosOnlineContext : DbContext
     {
-        private const string connectionString = @"Data Source=localhost;Initial Catalog=CursosOnline;User=sa;Password=AbrAz0501";
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public SqlServerCursosOnlineContext(DbContextOptions options) : base(options)
         {
-            optionsBuilder.UseSqlServer(connectionString);
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<CursoInstructor>().HasKey(ci => new { ci.CursoId, ci.InstructorId });
+            modelBuilder.Entity<CursoInstructor>().HasKey(ci => new { ci.InstructorId, ci.CursoId });
         }
 
         public DbSet<Curso> Curso { get; set; }
@@ -22,6 +20,6 @@ namespace LeerData.Data
         public DbSet<Comentario> Comentario { get; set; }
         public DbSet<Instructor> Instructor { get; set; }
         public DbSet<CursoInstructor> CursoInstructor { get; set; }
-
     }
+
 }

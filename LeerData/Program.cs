@@ -1,8 +1,6 @@
 ﻿using LeerData.Data;
-using LeerData.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Linq;
 
 namespace LeerData
 {
