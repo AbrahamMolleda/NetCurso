@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LeerData.Data
 {
-    public class AppVentasCursosContext : DbContext
+    public class SqlAppVentasCursosContext : DbContext
     {
         private const string connectionString = @"Data Source=localhost;Initial Catalog=CursosOnline;User=sa;Password=AbrAz0501";
 
