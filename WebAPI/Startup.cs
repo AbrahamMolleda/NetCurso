@@ -1,3 +1,5 @@
+using Aplicacion.Cursos;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -36,6 +38,7 @@ namespace WebAPI
                 opt.UseMySql(Configuration.GetSection("SqlConnections:MySql").Value, new MySqlServerVersion(new Version(8, 5, 64)));
             });
 
+            services.AddMediatR(typeof(Consulta.Manejador).Assembly);
             services.AddControllers();
         }
 
