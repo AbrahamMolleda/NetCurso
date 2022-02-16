@@ -1,7 +1,9 @@
 using Aplicacion.Cursos;
+using Dominio.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -33,13 +35,18 @@ namespace WebAPI
                 opt.UseSqlServer(Configuration.GetSection("SqlConnections:SqlServer").Value);
             });
 
-            services.AddDbContext<MySqlCursosOnlineContext>(opt =>
-            {
-                opt.UseMySql(Configuration.GetSection("SqlConnections:MySql").Value, new MySqlServerVersion(new Version(8, 5, 64)));
-            });
+            //services.adddbcontext<mysqlcursosonlinecontext>(opt =>
+            //{
+            //    opt.usemysql(configuration.getsection("sqlconnections:mysql").value, new mysqlserverversion(new version(8, 5, 64)));
+            //});
+            
 
             services.AddMediatR(typeof(Consulta.Manejador).Assembly);
             services.AddControllers();
+            var builder = services.AddIdentityCore<Usuario>();
+            var identityBuilder = new IdentityBuilder(builder.UserType, builder.Services);
+            identityBuilder.AddEntityFrameworkStores<SqlServerCursosOnlineContext>();
+            identityBuilder.AddSignInManager<SignInManager<Usuario>>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
